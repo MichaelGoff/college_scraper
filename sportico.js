@@ -9,7 +9,6 @@ const conferences = dictionaries.conferences;
 const ObjectsToCsv = require('objects-to-csv');
 
 const rows = [];
-console.log(json4);
 
 for (const json of [json1, json2, json3, json4]) {
     const list = json[0];
@@ -18,11 +17,14 @@ for (const json of [json1, json2, json3, json4]) {
         const years = Object.keys(list[school]);
         //console.log(school, years);
         for (const year of years) {
+            const nickname = nicknames[school];
+        
             const row = {
                 school, 
-                nickname: nicknames[school],
+                nickname,
                 conference: conferences[school],
                 year,
+                logoUrl: `https://d3data.sportico.com/NCAADatabase/Logos/${encodeURIComponent(nickname)}.png`,
             };
     
             const sportsList = list[school][year]['Revenues'];
